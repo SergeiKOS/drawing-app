@@ -1,5 +1,12 @@
+import './App.css'
+import Canvas from './components/Canvas'
+
 function App() {
-  return <h1>Drawing app</h1>
+  return (
+    <div className="canvas-wrapper">
+      <Canvas />
+    </div>
+  )
 }
 
 export default App
