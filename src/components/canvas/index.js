@@ -3,14 +3,17 @@ import { ChromePicker } from 'react-color'
 
 import ClearCanvasBtn from './ClearCanvasBtn'
 import EraseBtn from './EraseBtn'
-import LineWidthControl from './LineWidthControl'
+import LineBtn from './LineBtn'
+import ThicknessControl from './ThicknessControl'
 import ShowColorBtn from './ShowColorBtn'
 
 const Canvas = () => {
-  const [lineWidth, setLineWidth] = useState(3)
+  const [thicknessControl, setThicknessControl] = useState(3)
+  const [eraserThicknessControl, setEraserThicknessControl] = useState(10)
   const [lineColor, setLineColor] = useState('#000000')
   const [isDrawing, setIsDrawing] = useState(false)
   const [showColorPicker, setShowColorPicker] = useState(false)
+  const [eraserOn, setEraserOn] = useState(false)
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
 
@@ -26,9 +29,18 @@ const Canvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
+    if (eraserOn) {
+      ctx.strokeStyle = 'white'
+      ctx.lineWidth = eraserThicknessControl
+    }
+  }, [eraserThicknessControl, eraserOn])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
     ctx.strokeStyle = lineColor
-    ctx.lineWidth = lineWidth
-  }, [lineWidth, lineColor])
+    ctx.lineWidth = thicknessControl
+  }, [thicknessControl, lineColor])
 
   const startDrawing = (e) => {
     let { offsetX, offsetY } = e.nativeEvent
@@ -66,7 +78,11 @@ const Canvas = () => {
   }
 
   const handleWidthChange = (e) => {
-    setLineWidth(e.target.value)
+    if (!eraserOn) {
+      setThicknessControl(Number(e.target.value))
+    } else {
+      setEraserThicknessControl(Number(e.target.value))
+    }
   }
 
   const clearCanvas = () => {
@@ -80,6 +96,15 @@ const Canvas = () => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     ctx.strokeStyle = 'white'
+    setEraserOn(true)
+  }
+
+  const handleLine = () => {
+    setEraserOn(false)
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    ctx.strokeStyle = lineColor
+    ctx.lineWidth = thicknessControl
   }
 
   const handleColorChange = (color) => {
@@ -91,19 +116,26 @@ const Canvas = () => {
   }
 
   return (
-    <>
+    <div className="canvas-wrapper">
+      <h1 className="visually-hidden">Drawing superstar canvas</h1>
       <ul className="settings-list">
         <li>
           <ClearCanvasBtn onClearCanvas={clearCanvas} />
         </li>
         <li>
-          <EraseBtn onErase={handleErase} />
+          {eraserOn ? (
+            <LineBtn onLine={handleLine} />
+          ) : (
+            <EraseBtn onErase={handleErase} />
+          )}
         </li>
         <li>
-          <LineWidthControl
+          <ThicknessControl
             submitWidth={submitWidth}
-            handleWidthChange={handleWidthChange}
-            lineWidth={lineWidth}
+            onWidthChange={handleWidthChange}
+            thicknessControl={thicknessControl}
+            eraserThicknessControl={eraserThicknessControl}
+            eraserOn={eraserOn}
           />
         </li>
         <li>
@@ -130,7 +162,7 @@ const Canvas = () => {
         onTouchMove={drawing}
         ref={canvasRef}
       />
-    </>
+    </div>
   )
 }
 
