@@ -1,7 +1,6 @@
 :root {
   --blue: #282988;
   --lightBlue: #d8d8fa;
-  --beige: #917188;
   --red: #ee476b;
 }
 
@@ -49,7 +48,8 @@ a {
 }
 
 a:hover {
-  background-color: var(--beige);
+  background-color: var(--lightBlue);
+  color: #000;
 }
 
 button {
@@ -64,7 +64,6 @@ button {
 }
 
 button:hover {
-  background-color: var(--beige);
   color: #fff;
 }
 
@@ -105,14 +104,18 @@ input:focus {
 }
 
 .navigation {
+  background-color: var(--blue);
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.navigation-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--blue);
-  color: #fff;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 1.5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .navigation small {
@@ -128,12 +131,13 @@ input:focus {
   display: flex;
   justify-content: space-between;
   font-size: 1.2rem;
-  margin-top: 150px;
+  margin-top: 0px;
+  border-bottom: 1px solid var(--blue);
 }
 
 .description {
   background-color: var(--lightBlue);
-  width: 40%;
+  width: 100%;
   padding: 50px;
 }
 
@@ -142,5 +146,64 @@ input:focus {
 }
 
 .image {
-  width: 40%;
+  display: none;
+}
+
+.email-link {
+  text-decoration: underline;
+}
+.email-link:hover {
+  background-color: transparent;
+  color: rgb(43, 42, 42);
+}
+
+.developer {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 10px #b4b4b4;
+  padding: 10px 20px 20px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.developer img {
+  margin-bottom: 20px;
+}
+
+.developer h3 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.developer p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+footer {
+  border-top: 1px solid var(--blue);
+  text-align: center;
+  margin-top: 20px;
+  padding: 30px;
+}
+
+@media (min-width: 600px) {
+  .description-image-container {
+    margin-top: 150px;
+    border-bottom: none;
+  }
+  .description {
+    width: 40%;
+  }
+  .image {
+    width: 40%;
+    display: block;
+  }
+  .developer {
+    margin-top: 100px;
+  }
 }
