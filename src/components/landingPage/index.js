@@ -28,7 +28,7 @@ const LandingPage = () => {
           <Description>
             <Title title="Special features" />
             Very lightweight and fast. Without ads and simple to use. Works on
-            touch devices as well.
+            touch devices as well. Lighthouse result 99 100 100 100.
           </Description>
         </section>
         <section className="description-image-container">
