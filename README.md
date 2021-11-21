@@ -1,9 +1,6 @@
-# Drawing superstar app
+# [Drawing superstar](https://drawing-superstar.netlify.app/)
 
 ![alt text](https://github.com/SergeiKOS/drawing-app/blob/main/src/README-screenshot.png?raw=true)
-
-
-[Project page](https://drawing-superstar.netlify.app/).
 
 ## Description
 
