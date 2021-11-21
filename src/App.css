@@ -64,7 +64,7 @@ button {
 }
 
 button:hover {
-  color: #fff;
+  background-color: var(--lightBlue);
 }
 
 .settings-list {
