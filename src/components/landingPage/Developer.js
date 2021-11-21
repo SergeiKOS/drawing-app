@@ -3,7 +3,12 @@ import { SiLinkedin, SiGithub, SiGoogleearth } from 'react-icons/si'
 const Developer = ({ developer }) => {
   return (
     <article className="developer">
-      <img src={developer.image} alt={`${developer.name} avatar`} width="200" />
+      <img
+        src={developer.image}
+        alt={`${developer.name} avatar`}
+        width="200"
+        height="200"
+      />
       <h3>{developer.name}</h3>
       <p>{developer.description}</p>
       <a
