@@ -18,18 +18,6 @@ const Canvas = () => {
   const contextRef = useRef(null)
 
   useEffect(() => {
-    const closeColorPickerByEsc = (e) => {
-      if (e.key === 'Escape') {
-        setShowColorPicker(false)
-      }
-    }
-
-    document.addEventListener('keydown', closeColorPickerByEsc)
-
-    return () => document.removeEventListener('keydown', closeColorPickerByEsc)
-  }, [])
-
-  useEffect(() => {
     const canvas = canvasRef.current
     canvas.width = document.body.clientWidth
     canvas.height = document.body.clientHeight
