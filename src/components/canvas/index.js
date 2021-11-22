@@ -54,6 +54,16 @@ const Canvas = () => {
     ctx.lineWidth = thicknessControl
   }, [thicknessControl, lineColor])
 
+  const handleDownload = async () => {
+    const image = canvasRef.current.toDataURL('image/png')
+    const blob = await (await fetch(image)).blob()
+    const blobURL = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = blobURL
+    link.download = 'your-drawing.png'
+    link.click()
+  }
+
   const startDrawing = (e) => {
     let { offsetX, offsetY } = e.nativeEvent
     if (e.touches) {
@@ -162,6 +172,11 @@ const Canvas = () => {
               onChangeComplete={handleColorChange}
             />
           )}
+        </li>
+        <li>
+          <button onClick={handleDownload} type="button">
+            Download
+          </button>
         </li>
       </ul>
 
