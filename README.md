@@ -4,7 +4,7 @@
 
 ## Description
 
-Drawing app project for the Mintbean hackathon. In this app, you can pick width (separate between line and eraser), pick a color, and draw lines, and the eraser also works on touch devices too. Due to time limitations, there is not a lot in terms of features.
+Drawing app project for the Mintbean hackathon. In this app, you can pick width (separate between line and eraser), pick a color (and close it by pressing on ESC button or anywhere in canvas), and draw lines, and the eraser also works on touch devices too. Due to time limitations, there is not a lot in terms of features.
 
 ## Technologies used
 
@@ -14,6 +14,7 @@ Drawing app project for the Mintbean hackathon. In this app, you can pick width 
 - [CRA](https://reactjs.org/docs/create-a-new-react-app.html)
 
 ## Installation
+
 If you'd like to try code on your machine, you can fork or clone the repo. Then install the required packages.
 
 ### yarn start
