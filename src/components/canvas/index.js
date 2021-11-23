@@ -132,9 +132,6 @@ const Canvas = () => {
   }
 
   const handleErase = () => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-
     setEraserOn(true)
   }
 
@@ -151,7 +148,11 @@ const Canvas = () => {
   }
 
   const handlePickColor = () => {
-    setShowColorPicker(!showColorPicker)
+    if (!eraserOn) {
+      setShowColorPicker(!showColorPicker)
+    } else {
+      alert('You have to turn of the eraser first')
+    }
   }
 
   const handleChangeTheme = () => {
