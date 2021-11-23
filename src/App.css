@@ -192,6 +192,22 @@ footer {
   padding: 30px;
 }
 
+.dark-theme {
+  color: white;
+  background-color: #000;
+}
+
+.dark-theme .settings-list {
+  border-bottom: 1px solid gray;
+}
+
+.dark-theme button {
+  background-color: #000;
+  color: white;
+  border: 1px solid gray;
+  margin-bottom: 1px;
+}
+
 @media (min-width: 600px) {
   .description-image-container {
     margin-top: 150px;

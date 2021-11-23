@@ -16,6 +16,7 @@ const Canvas = () => {
   const [eraserOn, setEraserOn] = useState(false)
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
 
   useEffect(() => {
     const closeColorPickerByEsc = (e) => {
@@ -36,16 +37,28 @@ const Canvas = () => {
 
     const ctx = canvas.getContext('2d')
     contextRef.current = ctx
-  }, [])
+    ctx.fillStyle = 'black'
+    if (isDarkTheme) {
+      ctx.fillStyle = 'black'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      setLineColor('#ffffff')
+    } else {
+      ctx.fillStyle = 'white'
+    }
+  }, [isDarkTheme])
 
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     if (eraserOn) {
-      ctx.strokeStyle = 'white'
       ctx.lineWidth = eraserThicknessControl
+      if (isDarkTheme) {
+        ctx.strokeStyle = 'black'
+      } else {
+        ctx.strokeStyle = 'white'
+      }
     }
-  }, [eraserThicknessControl, eraserOn])
+  }, [eraserThicknessControl, eraserOn, isDarkTheme])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -110,14 +123,18 @@ const Canvas = () => {
   const clearCanvas = () => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
-    ctx.fillStyle = 'white'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
+    if (isDarkTheme) {
+      ctx.fillStyle = 'black'
+    } else {
+      ctx.fillStyle = 'white'
+    }
   }
 
   const handleErase = () => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
-    ctx.strokeStyle = 'white'
+
     setEraserOn(true)
   }
 
@@ -137,8 +154,13 @@ const Canvas = () => {
     setShowColorPicker(!showColorPicker)
   }
 
+  const handleChangeTheme = () => {
+    setIsDarkTheme(!isDarkTheme)
+    setEraserOn(false)
+  }
+
   return (
-    <div className="canvas-wrapper">
+    <div className={`canvas-wrapper ${isDarkTheme && 'dark-theme'}`}>
       <h1 className="visually-hidden">Drawing superstar canvas</h1>
       <ul className="settings-list">
         <li>
@@ -176,6 +198,11 @@ const Canvas = () => {
         <li>
           <button onClick={handleDownload} type="button">
             Download
+          </button>
+        </li>
+        <li>
+          <button onClick={handleChangeTheme} type="button">
+            {isDarkTheme ? 'Light Canvas' : 'Black Canvas'}
           </button>
         </li>
       </ul>
