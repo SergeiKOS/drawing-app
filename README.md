@@ -4,7 +4,7 @@
 
 ## Description
 
-Drawing app project for the Mintbean hackathon. In this app, you can pick width (separate between line and eraser), pick a color (and close it by pressing on ESC button or anywhere in canvas), draw lines, and erase. App works on touch devices too. You can download your art by pressing a Download button. Due to time limitations, there is not a lot in terms of features.
+Drawing app project for the Mintbean hackathon. In this app, you can pick width (separate between line and eraser), pick a color (and close it by pressing on ESC button or anywhere in canvas), draw lines, and erase. Dark mode available. App works on touch devices too. You can download your art by pressing a Download button. Due to time limitations, there is not a lot in terms of features.
 
 ## Technologies used
 
